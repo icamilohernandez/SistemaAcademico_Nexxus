@@ -66,7 +66,7 @@ public class Main {
         
         System.out.println("No se encontró nota para ese estudiante y asignatura.");
     }
-    // ACTIVIDAD 9: UPDATE - Actualizar nota
+
 public static void actualizarNota() {
     System.out.println("\n--- ACTUALIZAR NOTA ---");
     
@@ -84,6 +84,27 @@ public static void actualizarNota() {
             
             n.setValorNota(valor);
             System.out.println("Nota actualizada.");
+            return;
+        }
+    }
+    
+    System.out.println("No se encontró nota para ese estudiante y asignatura.");
+}
+
+public static void eliminarNota() {
+    System.out.println("\n--- ELIMINAR NOTA ---");
+    
+    System.out.print("Código del estudiante: ");
+    String codEst = sc.nextLine();
+    
+    System.out.print("Código de la asignatura: ");
+    String codAsig = sc.nextLine();
+    
+    for (int i = 0; i < notas.size(); i++) {
+        Nota n = notas.get(i);
+        if (n.getCodigoEstudiante().equals(codEst) && n.getCodigoAsignatura().equals(codAsig)) {
+            notas.remove(i);
+            System.out.println("Nota eliminada.");
             return;
         }
     }
