@@ -4,29 +4,66 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
+    
+    static ArrayList<Nota> notas = new ArrayList<>();
     static Scanner sc = new Scanner(System.in);
-static ArrayList<Nota> notas = new ArrayList<>();
-
     
     public static void main(String[] args) {
         System.out.println("Sistema funcionando");
     }
+    
+
     public static void registrarNota() {
-    System.out.println("\n--- REGISTRAR NOTA ---");
+        System.out.println("\n--- REGISTRAR NOTA ---");
+        
+        System.out.print("Código del estudiante: ");
+        String codEst = sc.nextLine();
+        
+        System.out.print("Código de la asignatura: ");
+        String codAsig = sc.nextLine();
+        
+        System.out.print("Valor de la nota: ");
+        double valor = sc.nextDouble();
+        sc.nextLine();
+        
+        Nota nota = new Nota(codEst, codAsig, valor);
+        notas.add(nota);
+        
+        System.out.println("Nota registrada correctamente.");
+    }
     
-    System.out.print("Código del estudiante: ");
-    String codEst = sc.nextLine();
+   
+    public static void listarNotas() {
+        System.out.println("\n--- LISTA DE NOTAS ---");
+        
+        if (notas.isEmpty()) {
+            System.out.println("No hay notas registradas.");
+            return;
+        }
+        
+        for (Nota n : notas) {
+            System.out.println(n);
+        }
+    }
     
-    System.out.print("Código de la asignatura: ");
-    String codAsig = sc.nextLine();
     
-    System.out.print("Valor de la nota: ");
-    double valor = sc.nextDouble();
-    sc.nextLine(); // limpiar el buffer
-    
-    Nota nota = new Nota(codEst, codAsig, valor);
-    notas.add(nota);
-    
-    System.out.println("Nota registrada correctamente.");
-}
+    public static void buscarNota() {
+        System.out.println("\n--- BUSCAR NOTA ---");
+        
+        System.out.print("Código del estudiante: ");
+        String codEst = sc.nextLine();
+        
+        System.out.print("Código de la asignatura: ");
+        String codAsig = sc.nextLine();
+        
+        for (Nota n : notas) {
+            if (n.getCodigoEstudiante().equals(codEst) && n.getCodigoAsignatura().equals(codAsig)) {
+                System.out.println("Nota encontrada:");
+                System.out.println(n);
+                return;
+            }
+        }
+        
+        System.out.println("No se encontró nota para ese estudiante y asignatura.");
+    }
 }
